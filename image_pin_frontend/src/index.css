@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Lat', sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

@@ -1,11 +1,11 @@
-import React from "react"
+import React from 'react';
 
-const App = () => {
-    return (
-        <h1 className="text-3xl font-bold underline">
-            hello world
-        </h1>
-    )
+function App() {
+  return (
+    <h1 className="text-3xl font-bold underline">
+      Hello World!
+    </h1>
+  );
 }
 
-export default App
+export default App;
