@@ -34,7 +34,7 @@ const Login = () => {
   function handleGoogleResponse(response: any) { // GoogleLoginResponse | GoogleLoginResponseOffline 
     
     let userObject : any = jwt_decode(response.credential)
-    // console.log(userObject)
+    
     localStorage.setItem('user', JSON.stringify(userObject))
     
     const { name, sub, picture } = userObject
