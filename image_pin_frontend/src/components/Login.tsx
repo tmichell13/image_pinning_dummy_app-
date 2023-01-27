@@ -1,25 +1,54 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login'
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import jwt_decode from 'jwt-decode'
+
+import { client } from '../client'
 
 import loop from '../assets/loop.mp4'
 import logo from '../assets/logo.png'
 
 const Login = () => {
 
+  const navigate = useNavigate()
+
   const clientId : string = (process.env.REACT_APP_GOOGLE_API_TOKEN as string) 
 
-  function responseGoogle(response: any) { // GoogleLoginResponse | GoogleLoginResponseOffline 
-    console.log(response)
-    localStorage.setItem('user', JSON.stringify(response.profileObj))
-    const { name, googleId, imageUrl } = response.profileObj
+  useEffect(() => {
+    /* global google */
+    // @ts-ignore
+    google.accounts.id.initialize({
+      client_id: clientId,
+      callback: handleGoogleResponse
+    }) 
+
+    // @ts-ignore
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      { theme: 'outline', size: 'large'}
+    )
+  }, [])
+
+
+  function handleGoogleResponse(response: any) { // GoogleLoginResponse | GoogleLoginResponseOffline 
+    
+    let userObject : any = jwt_decode(response.credential)
+    // console.log(userObject)
+    localStorage.setItem('user', JSON.stringify(userObject))
+    
+    const { name, sub, picture } = userObject
     const doc = {
-      _id: googleId,
+      _id: sub,
       _type: 'user',
       userName: name,
-      image: imageUrl
+      image: picture
     }
+
+    client.createIfNotExists(doc)
+      .then(() => {
+        navigate('/', { replace:true })
+      })
   }
 
   return (
@@ -43,23 +72,8 @@ const Login = () => {
             />
           </div>
           <div className='shadow-2xl'>
-            <GoogleLogin 
-              clientId={clientId}
-              render={(renderProps) => (
-                <button
-                  type='button'
-                  className='bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none'
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <FcGoogle className='mr-4'/> Sign in with Google
-                </button>
-              )}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy='single_host_origin'
-            />
-          </div>
+            <div id='signInDiv'></div>
+          </div> 
         </div>
       </div>
     </div>
