@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Circles } from 'react-loader-spinner' 
+import { TailSpin } from 'react-loader-spinner' 
 
 const Spinner = ({ message }) => {
 
     return (
         <div className='flex flex-col justify-center items-center w-full h-full'>
-            <Circles 
-                color='#00BFFF'
+            <TailSpin 
+                color='#507af8'
                 height={50}
                 width={200}
             />
