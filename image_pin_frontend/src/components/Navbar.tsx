@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { IoMdAdd, IoMdSearch } from 'react-icons/io'
 
 
-const Navbar = ({ searchTerm, setSearchTerm, user }) => {
+const Navbar = ({ searchTerm, setSearchTerm, user : {user} }) => {
 
   const navigate = useNavigate()
 

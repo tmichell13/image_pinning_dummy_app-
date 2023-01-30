@@ -8,7 +8,7 @@ import Spinner from './Spinner'
 import { categories } from '../utils/data'
 
 
-const CreatePin = ({ user }) => {
+const CreatePin = ({ user : {user}}) => {
 
   const [title, setTitle] = useState('')
   const [about, setAbout] = useState('')
@@ -52,7 +52,7 @@ const CreatePin = ({ user }) => {
           asset: {
             _type: 'reference',
             _ref: imageAsset?._id
-          }
+          },
         },
         userId: user._id,
         postedBy: {
@@ -69,6 +69,8 @@ const CreatePin = ({ user }) => {
       setTimeout(() => setFields(false), 3500)
     }
   }
+
+  const logUser = () => console.log(user.user.userName)
 
   return (
     <div className='flex flex-col justify-center items-center mt-5 lg:h-4/5'>
@@ -135,6 +137,7 @@ const CreatePin = ({ user }) => {
                 alt="user-profile"
               />
               <p className="font-bold">{user.userName}</p>
+              <button type="button" onClick={logUser}>log user</button>
             </div>
           )}
           <input 

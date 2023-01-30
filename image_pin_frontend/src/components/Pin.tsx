@@ -16,7 +16,7 @@ const Pin = ({ pin: { save, postedBy, image, _id, destination }}) => {
   const user = fetchUser()
   const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user.sub))?.length
   
-  function savePin(id) {
+  function savePin(id : any) {
     if(!alreadySaved) {
       client  
         .patch(id)
@@ -36,7 +36,7 @@ const Pin = ({ pin: { save, postedBy, image, _id, destination }}) => {
     }
   }
 
-  function deletePin(id) {
+  function deletePin(id : any) {
     client
       .delete(id)
       .then(() => window.location.reload())
