@@ -63,6 +63,7 @@ const PinDetail = ({ user : { user } }) => {
     }
   }
 
+
   if(!pinDetail) {
     return <Spinner message='Loading Pin...' />
   }
@@ -113,7 +114,7 @@ const PinDetail = ({ user : { user } }) => {
     </Link>
     <h2 className='mt-5 text-2xl'>Comments</h2>
     <div className='max-h-370 overflow-y-auto'>
-      {pinDetail?.comment?.map((comment : any, i : number) => (
+      {pinDetail.comments?.map((comment : any, i : number) => (
         <div
           className='flex gap-2 mt-5 items-center bg-white rounded-lg'
           key={i}
