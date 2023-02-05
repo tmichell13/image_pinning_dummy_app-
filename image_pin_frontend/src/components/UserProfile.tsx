@@ -73,17 +73,6 @@ const UserProfile = () => {
               alt='user-img'
             />
             <h1 className='font-bold text-3xl text-center mt-3'>{user.userName}</h1>
-            <div className='absolut top-0 z-1 right-0 p-2'>
-              {userId === user._id && (
-                <button
-                  type='button'
-                  className=' bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
-                  onClick={() => handleSignOut()}
-                >
-                Sign Out
-                </button>
-              )}
-            </div>
           </div>
           <div className='text-center mb-7'>
             <button
@@ -118,6 +107,17 @@ const UserProfile = () => {
           )}
         </div>
       </div>
+      <div className='absolute top-0 z-1 right-0 p-2'>
+              {userId === user._id && (
+                <button
+                  type='button'
+                  className='bg-red-500 text-white p-2 rounded-full cursor-pointer outline-none shadow-md hover:bg-white hover:text-black'
+                  onClick={() => handleSignOut()}
+                >
+                Sign Out
+                </button>
+              )}
+            </div>
     </div>
   )
 }

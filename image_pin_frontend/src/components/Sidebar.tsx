@@ -6,6 +6,8 @@ import { IoIosArrowForward } from 'react-icons/io'
 import logo from '../assets/logo.png'
 import UserProfile from './UserProfile'
 
+import { categories } from '../utils/data'
+
 const Sidebar = ({ user, closeToggle }) => {
 
   const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all' +
@@ -13,14 +15,6 @@ const Sidebar = ({ user, closeToggle }) => {
   const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all' +
     ' duration-200 ease-in-out capitalize italic'
 
-  const categories = [
-    {name: 'Animals'},
-    {name: 'Wallpapers'},
-    {name: 'Fitness'},
-    {name: 'Anime'},
-    {name: 'Wilderness'},
-    {name: 'Other'},
-  ]
 
   function handleCloseSidebar() {
     if(closeToggle) 
@@ -55,6 +49,11 @@ const Sidebar = ({ user, closeToggle }) => {
               onClick={handleCloseSidebar}
               key={category.name}
             >
+              <img 
+                src={category.image}
+                className='w-8 h-8 rounded-full shadow-sm'
+                alt='category'
+              />
               {category.name}
             </NavLink>
           ))}
