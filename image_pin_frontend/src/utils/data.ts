@@ -105,7 +105,7 @@ export const categories = [
   ]
 
   export const pinDetailMorePinQuery = ( pin : any ) => {
-    const query = `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}' ]{
+    return `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}' ]{
       image{
         asset->{
           url
@@ -127,7 +127,6 @@ export const categories = [
         },
       },
     }`
-    return query
   }
 
   export const pinDetailQuery = ( pinId : any ) => {

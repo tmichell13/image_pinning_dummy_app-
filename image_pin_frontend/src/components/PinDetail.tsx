@@ -23,9 +23,9 @@ const PinDetail = ({ user : { user } }) => {
       client.fetch(query)
         .then((data) => {
           setPinDetail(data[0])
-
+          
           if(data[0]) {
-            const moreDetailQuery = pinDetailMorePinQuery(pinId)
+            const moreDetailQuery = pinDetailMorePinQuery(data[0])
 
             client.fetch(moreDetailQuery)
               .then((res) => setPins(res))
@@ -69,6 +69,7 @@ const PinDetail = ({ user : { user } }) => {
   }
 
   return (
+    <>
     <div className='flex xl-flex-row flex-col m-auto bg-white' style={{ maxWidth: '1500px', borderRadius: '32px'}}>
       <div className='flex justify-center items-center md:items-start flex-initial'>
         <img 
@@ -155,9 +156,16 @@ const PinDetail = ({ user : { user } }) => {
         >
           {addingComment ? 'Posting comment...' : 'Post'}
         </button>
-    </div>
       </div>
     </div>
+    </div>
+    {pins?.length > 0 ? (
+      <>
+        <h3 className='text-center font-bold text-2x mt-8 mb-4'>Similar Posts</h3>
+        <MasonryLayout pins={pins} />
+      </>
+    ) : (<Spinner message='Loading similar posts'/>)}
+    </>
   )
 }
 

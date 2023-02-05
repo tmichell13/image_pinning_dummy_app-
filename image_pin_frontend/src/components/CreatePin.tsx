@@ -70,8 +70,6 @@ const CreatePin = ({ user : {user}}) => {
     }
   }
 
-  const logUser = () => console.log(user.user.userName)
-
   return (
     <div className='flex flex-col justify-center items-center mt-5 lg:h-4/5'>
       { fields && (
@@ -137,7 +135,6 @@ const CreatePin = ({ user : {user}}) => {
                 alt="user-profile"
               />
               <p className="font-bold">{user.userName}</p>
-              <button type="button" onClick={logUser}>log user</button>
             </div>
           )}
           <input 
