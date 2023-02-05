@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login'
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import jwt_decode from 'jwt-decode'
